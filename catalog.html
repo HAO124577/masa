@@ -1,0 +1,143 @@
+<html>
+<head>
+    <title>ОНЛАЙН МАГАЗИН</title>
+    <style>
+        body {
+            /* Тема устанавливается такая же, как у пользователя в телеграме */
+            background-color: var(--theme-background-color);
+            color: var(--theme-text-color);
+        }
+        h1 {
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            width: 60%;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid var(--theme-text-color);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ОНЛАЙН МАГАЗИН</h1>
+    <button id="catalog">КАТАЛОГ</button>
+    <script>
+        // Функция для перехода на новую страницу с каталогом
+        function showCatalog() {
+            document.body.innerHTML =
+                <h1>КАТАЛОГ</h1>
+                <button id="standard-bot">Standard bot</button>
+                <button id="standard-plus-bot">Standard + bot</button>
+                <button id="professional-bot">Professional bot</button>
+                <button id="subscribe">subscribe</button>
+            ;
+            // Добавляем обработчики событий для кнопок каталога
+            document.getElementById("standard-bot").addEventListener("click", showStandardBot);
+            document.getElementById("standard-plus-bot").addEventListener("click", showStandardPlusBot);
+            document.getElementById("professional-bot").addEventListener("click", showProfessionalBot);
+            document.getElementById("subscribe").addEventListener("click", showSubscribe);
+        }
+
+        // Функция для показа информации о Standard bot
+        function showStandardBot() {
+            document.body.innerHTML =
+                <h1>Standard bot</h1>
+                <p>Бот standard включает в себя следующее:</p>
+                <ul>
+                    <li>Подключение множества кнопок</li>
+                    <li>Добавление фотографий</li>
+                    <li>Отклик на выбранные команды</li>
+                    <li>Подключение к базовым сайтам как курс валют, население мира и так далее</li>
+                    <li>Простые математические операции</li>
+                    <li>С бесплатным занесением на сервера</li>
+                </ul>
+                <p>Для заказа бота нажмите на кнопку "ФОРМА", заполните свои данные и с вами свяжутся в течении 3 часов.</p>
+                <button id="form">ФОРМА</button>
+            ;
+            // Добавляем обработчик события для кнопки формы
+            document.getElementById("form").addEventListener("click", showForm);
+        }
+
+        // Функция для показа информации о Standard + bot
+        function showStandardPlusBot() {
+            document.body.innerHTML =
+                <h1>Standard + bot</h1>
+                <p>Бот standard + включает в себя полную работу с библиотеками бота, более сложные подключения, статистика, база данных пользователей и многое другое, включая все пункты в standard подписки и с занесением на более мощный сервер.</p>
+                <p>Для согласования и установления цены заполните форму ниже.</p>
+                <button id="form">ФОРМА</button>
+            ;
+            // Добавляем обработчик события для кнопки формы
+            document.getElementById("form").addEventListener("click", showForm);
+        }
+
+        // Функция для показа информации о Professional bot
+        function showProfessionalBot() {
+            document.body.innerHTML = `
+<h1>Professional bot</h1>
+                <p>Профессиональный бот обработает любой ваш запрос (в рамках возможного), цена очень варьируется, но в среднем это 15000₽.</p>
+                <p>Для оформления заказа заполните форму ниже.</p>
+                <button id="form">ФОРМА</button>
+            ;
+            // Добавляем обработчик события для кнопки формы
+            document.getElementById("form").addEventListener("click", showForm);
+        }
+
+        // Функция для показа информации о subscribe
+        function showSubscribe() {
+            document.body.innerHTML =
+                <h1>subscribe</h1>
+                <p>Здесь будет информация о подписке.</p>
+            ;
+        }
+
+        // Функция для показа формы для заполнения
+        function showForm() {
+            document.body.innerHTML =
+                <h1>ФОРМА</h1>
+                <form id="order-form">
+                    <label for="telegram-tag">telegram teg</label>
+                    <input type="text" id="telegram-tag" name="telegram-tag" required>
+                    <label for="email">email</label>
+                    <input type="email" id="email" name="email" required>
+                    <button type="submit">Отправить</button>
+                </form>
+            ;
+            // Добавляем обработчик события для отправки формы
+            document.getElementById("order-form").addEventListener("submit", sendForm);
+        }
+
+        // Функция для отправки формы владельцу бота и перехода на новую страницу с подтверждением
+        function sendForm(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+            // Получаем данные из формы
+            let telegramTag = document.getElementById("telegram-tag").value;
+            let email = document.getElementById("email").value;
+            // Отправляем данные владельцу бота через API телеграма (здесь нужно указать токен и идентификатор бота)
+            fetch(https://api.telegram.org/bot<token>/sendMessage?chat_id=<id>&text=Новый заказ от ${telegramTag} с email ${email});
+            // Переходим на новую страницу с подтверждением
+            document.body.innerHTML =
+                <h1>Ваш заказ принят, ждите сообщения.</h1>
+            `;
+        }
+
+        // Добавляем обработчик события для кнопки каталога
+        document.getElementById("catalog").addEventListener("click", showCatalog);
+    </script>
+</body>
+</html>
